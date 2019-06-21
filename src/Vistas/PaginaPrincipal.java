@@ -101,8 +101,8 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     private void btnCuentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuentasActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        Cuentas cuentas = new Cuentas();
-        cuentas.setVisible(true);
+        Cuentas cuenta = new Cuentas();
+        cuenta.setVisible(true);
     }//GEN-LAST:event_btnCuentasActionPerformed
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
@@ -111,6 +111,9 @@ public class PaginaPrincipal extends javax.swing.JFrame {
 
     private void btnCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoriasActionPerformed
         // TODO add your handling code here:
+        setVisible(false);
+        Categorias categoria = new Categorias();
+        categoria.setVisible(true);
     }//GEN-LAST:event_btnCategoriasActionPerformed
 
     /**

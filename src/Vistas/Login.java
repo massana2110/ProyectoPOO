@@ -48,6 +48,11 @@ public class Login extends javax.swing.JFrame {
         txtUsuario.setName("txtUsuario"); // NOI18N
 
         btnIngresar.setText("Ingresar");
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarActionPerformed(evt);
+            }
+        });
 
         btnRegistrarse.setText("Registrarse");
         btnRegistrarse.addActionListener(new java.awt.event.ActionListener() {
@@ -118,6 +123,14 @@ public class Login extends javax.swing.JFrame {
         registrarse.setVisible(true);
         
     }//GEN-LAST:event_btnRegistrarseActionPerformed
+
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+        PaginaPrincipal principal = new PaginaPrincipal();
+        principal.setVisible(true);
+        // Solo es para probar xD PORQUE NO TENGO CONECTADA LA BD
+    }//GEN-LAST:event_btnIngresarActionPerformed
 
     /**
      * @param args the command line arguments
