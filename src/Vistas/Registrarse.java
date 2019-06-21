@@ -5,17 +5,26 @@
  */
 package Vistas;
 
+import java.sql.SQLException;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import sql.DBQuery;
+
 /**
  *
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
 public class Registrarse extends javax.swing.JFrame {
 
+    DBQuery query;
+    JFrame window;
     /**
      * Creates new form Registrarse
      */
-    public Registrarse() {
+    public Registrarse(JFrame window) {
         initComponents();
+        query = new DBQuery();
+        this.window = window;
     }
 
     /**
@@ -28,27 +37,28 @@ public class Registrarse extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtRegNombre = new javax.swing.JTextField();
         txtRegUsuario = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtRegContra = new javax.swing.JTextField();
         btnRegistrarCuenta = new javax.swing.JButton();
         btnCancelReg = new javax.swing.JButton();
+        txtRegPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setText("Registrarse");
 
-        jLabel2.setText("Nombre:");
-
         jLabel3.setText("Usuario:");
 
         jLabel4.setText("Contraseña:");
 
         btnRegistrarCuenta.setText("Registrar");
+        btnRegistrarCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarCuentaActionPerformed(evt);
+            }
+        });
 
         btnCancelReg.setText("Cancelar");
         btnCancelReg.addActionListener(new java.awt.event.ActionListener() {
@@ -70,40 +80,35 @@ public class Registrarse extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtRegNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtRegUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtRegContra, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(jLabel4)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(81, 81, 81)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnRegistrarCuenta)
                             .addComponent(btnCancelReg))))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtRegPassword)
+                    .addComponent(txtRegUsuario))
+                .addGap(32, 32, 32))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtRegNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(20, 20, 20)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtRegUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtRegContra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
+                .addComponent(txtRegPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
                 .addComponent(btnRegistrarCuenta)
                 .addGap(18, 18, 18)
                 .addComponent(btnCancelReg)
@@ -115,53 +120,39 @@ public class Registrarse extends javax.swing.JFrame {
 
     private void btnCancelRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelRegActionPerformed
         // TODO add your handling code here:
-       
+        setVisible(false);
+        window.setVisible(true);
     }//GEN-LAST:event_btnCancelRegActionPerformed
+
+    private void btnRegistrarCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarCuentaActionPerformed
+        // TODO add your handling code here:
+        if (txtRegUsuario.getText().isEmpty() || txtRegPassword.getPassword().equals("")) {
+            JOptionPane.showMessageDialog(this, "ERROR: CAMPOS NO PUEDEN ESTAR VACIOS.", "ALERT", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try{
+                if (query.registrarUsuario(txtRegUsuario.getText(), new String(txtRegPassword.getPassword()))) {
+                    JOptionPane.showMessageDialog(this, "USUARIO CREADO CON EXITO", "SUCCES", JOptionPane.INFORMATION_MESSAGE);
+                } else{
+                    JOptionPane.showMessageDialog(this, "ERROR AL CONSULTAR LA BASE DE DATOS", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch(SQLException sqlerr){
+                sqlerr.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_btnRegistrarCuentaActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Registrarse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Registrarse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Registrarse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Registrarse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Registrarse().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelReg;
     private javax.swing.JButton btnRegistrarCuenta;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField txtRegContra;
-    private javax.swing.JTextField txtRegNombre;
+    private javax.swing.JPasswordField txtRegPassword;
     private javax.swing.JTextField txtRegUsuario;
     // End of variables declaration//GEN-END:variables
 }
