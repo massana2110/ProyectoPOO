@@ -51,6 +51,11 @@ public class Registrarse extends javax.swing.JFrame {
         btnRegistrarCuenta.setText("Registrar");
 
         btnCancelReg.setText("Cancelar");
+        btnCancelReg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelRegActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -107,6 +112,11 @@ public class Registrarse extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCancelRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelRegActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_btnCancelRegActionPerformed
 
     /**
      * @param args the command line arguments
