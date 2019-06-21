@@ -113,6 +113,10 @@ public class Login extends javax.swing.JFrame {
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
         // TODO add your handling code here:
+        setVisible(false);
+        Registrarse registrarse = new Registrarse();
+        registrarse.setVisible(true);
+        
     }//GEN-LAST:event_btnRegistrarseActionPerformed
 
     /**
