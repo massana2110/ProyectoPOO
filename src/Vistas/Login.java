@@ -137,7 +137,7 @@ public class Login extends javax.swing.JFrame {
         DBQuery query = new DBQuery();
         
         try{
-            Usuario user = query.login(txtUsuario.getText(), new String(txtContraseña.getPassword()));
+            Usuario user = query.login(txtUsuario.getText(), query.MD5(new String(txtContraseña.getPassword())));
             if (user != null) {
                 PaginaPrincipal mainW = new PaginaPrincipal();
                 setVisible(false);

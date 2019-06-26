@@ -27,12 +27,12 @@ public class DBQuery {
     public boolean registrarUsuario(String username, String password) throws SQLException{
 
         String query = "INSERT INTO usuario (username, contraseña) VALUES (?,?)";
-
+        String hashPass = MD5(password);
         try{
             Connection con = conexion.getConnection();
             PreparedStatement pstm = con.prepareStatement(query);
             pstm.setString(1, username);
-            pstm.setString(2, password);
+            pstm.setString(2, hashPass);
             
             if(pstm.executeUpdate() > 0){
                 return true;
@@ -69,4 +69,18 @@ public class DBQuery {
         return usuario;
     }
     
+    public String MD5(String md5){
+        try{
+            java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
+             byte[] array = md.digest(md5.getBytes());
+             StringBuffer sb = new StringBuffer();
+             for (int i = 0; i < array.length; ++i) {
+               sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100).substring(1,3));
+            }
+            return sb.toString();
+        } catch(java.security.NoSuchAlgorithmException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

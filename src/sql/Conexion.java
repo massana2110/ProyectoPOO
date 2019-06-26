@@ -19,7 +19,7 @@ public class Conexion {
     private final String DRIVER = "org.postgresql.Driver";
     private final String URL = "jdbc:postgresql://localhost:5432/BDProyecto";
     private final String USERNAME = "postgres";
-    private final String PASSWORD = "ronald18"; //SI QUIEREN CONECTAR A LA BD DEBEN CAMBIAR ESTE CAMPO, CON SU CONTRASEÑA DE POSTGRES
+    private final String PASSWORD = "rogstrixPC21"; //SI QUIEREN CONECTAR A LA BD DEBEN CAMBIAR ESTE CAMPO, CON SU CONTRASEÑA DE POSTGRES
     
     private Connection connection;
     
