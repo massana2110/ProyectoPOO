@@ -10,11 +10,13 @@ public class CuentaTarjetaDebito extends Cuenta{
     @Override
     public double abonarCuenta(double monto) {
         super.abonarCuenta(monto); 
+        return monto;
     }
 
     @Override
     public double retiroCuenta(double monto) {
         super.retiroCuenta(monto); 
+        return monto;
     }
     
 }
