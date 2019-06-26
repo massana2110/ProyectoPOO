@@ -139,12 +139,15 @@ public class Login extends javax.swing.JFrame {
         try{
             Usuario user = query.login(txtUsuario.getText(), query.MD5(new String(txtContraseña.getPassword())));
             if (user != null) {
-                PaginaPrincipal mainW = new PaginaPrincipal();
+                PaginaPrincipal mainW = new PaginaPrincipal(user, this);
+                limpiarCampos();
                 setVisible(false);
                 mainW.setVisible(true);
             } else{
+                limpiarCampos();
                 lblValidator.setVisible(true);
             }
+            lblValidator.setVisible(false);
         } catch(SQLException e){
             lblValidator.setVisible(true);
         }
@@ -152,6 +155,10 @@ public class Login extends javax.swing.JFrame {
         // Solo es para probar xD PORQUE NO TENGO CONECTADA LA BD
     }//GEN-LAST:event_btnIngresarActionPerformed
 
+    public void limpiarCampos(){
+        txtUsuario.setText("");
+        txtContraseña.setText("");
+    }
     /**
      * @param args the command line arguments
      */

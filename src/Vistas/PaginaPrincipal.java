@@ -5,17 +5,26 @@
  */
 package Vistas;
 
+import entidades.Usuario;
+import javax.swing.JFrame;
+
 /**
  *
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
 public class PaginaPrincipal extends javax.swing.JFrame {
 
+    private Usuario user;
+    private JFrame window;
+
     /**
      * Creates new form PaginaPrincipal
+     * @param currentUser
      */
-    public PaginaPrincipal() {
+    public PaginaPrincipal(Usuario currentUser, JFrame window) {
         initComponents();
+        user = currentUser;
+        this.window = window;
     }
 
     /**
@@ -39,6 +48,11 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         lblTitulo.setText("Pagina Principal");
 
         btnMovimientos.setText("Movimientos");
+        btnMovimientos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMovimientosActionPerformed(evt);
+            }
+        });
 
         btnCuentas.setText("Cuentas");
         btnCuentas.addActionListener(new java.awt.event.ActionListener() {
@@ -101,55 +115,33 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     private void btnCuentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuentasActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        Cuentas cuenta = new Cuentas();
+        Cuentas cuenta = new Cuentas(user, this);
         cuenta.setVisible(true);
     }//GEN-LAST:event_btnCuentasActionPerformed
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
         // TODO add your handling code here:
+        System.out.println("Usuario a desconectar: " + user.getUsername());
+        user = null;
+        setVisible(false);
+        window.setVisible(true);
+        
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void btnCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoriasActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        Categorias categoria = new Categorias();
+        Categorias categoria = new Categorias(user, this);
         categoria.setVisible(true);
     }//GEN-LAST:event_btnCategoriasActionPerformed
+
+    private void btnMovimientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMovimientosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMovimientosActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PaginaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PaginaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PaginaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PaginaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PaginaPrincipal().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCategorias;
