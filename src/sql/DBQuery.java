@@ -6,6 +6,7 @@
 
 package sql;
 
+import entidades.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,30 +25,48 @@ public class DBQuery {
     }
     
     public boolean registrarUsuario(String username, String password) throws SQLException{
-        
-        Connection con = conexion.getConnection();
+
         String query = "INSERT INTO usuario (username, contraseña) VALUES (?,?)";
-        String query2 = "SELECT * FROM usuario WHERE username= ?";
-        boolean isSuccess = false;
 
         try{
+            Connection con = conexion.getConnection();
             PreparedStatement pstm = con.prepareStatement(query);
-
             pstm.setString(1, username);
             pstm.setString(2, password);
-            
-            ResultSet rs = pstm.executeQuery();
             
             if(pstm.executeUpdate() > 0){
                 return true;
             }
-            
-        } catch(SQLException error){
+        } catch(Exception error){
             error.printStackTrace();
+            return false;
         } 
         
-        return false;
+        return true;
     }
 
+    public Usuario login(String username, String password) throws SQLException{
+        boolean flag = false;
+        Usuario usuario = new Usuario();
+        String query = "SELECT * FROM usuario WHERE username = ? AND  contraseña = ?";
+        try{
+            Connection con = conexion.getConnection();
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, username);
+            ps.setString(2, password);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                usuario.setUsername(rs.getString("username"));
+                usuario.setPassword(rs.getString("contraseña"));
+                flag = true;
+            }
+            if (!flag) usuario = null;
+        } catch(SQLException e){
+            usuario = null;
+            e.printStackTrace();
+        }
+        return usuario;
+    }
     
 }
