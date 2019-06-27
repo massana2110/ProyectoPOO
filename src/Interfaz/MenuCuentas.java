@@ -331,10 +331,14 @@ public class MenuCuentas extends javax.swing.JFrame {
 
     private void jLabelCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCerrarSesionMouseClicked
         // TODO add your handling code here:
+        new Login().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jLabelCerrarSesionMouseClicked
 
     private void jLabelCerrarSesionTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCerrarSesionTextMouseClicked
         // TODO add your handling code here:
+        new Login().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jLabelCerrarSesionTextMouseClicked
 
     private void jLabelCerrarSesionTextMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCerrarSesionTextMouseEntered
