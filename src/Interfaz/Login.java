@@ -35,7 +35,7 @@ public class Login extends javax.swing.JFrame {
     public void limpiarCampos(){
         jTextUsuario.setText("");
         jTextContraseña.setText("");
-        jTextContraseña2.setText("");
+        
     }
     
     public Color getColorOriginal(){
@@ -43,7 +43,7 @@ public class Login extends javax.swing.JFrame {
     }
     
    public Image getIconImage(){
-       Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/Logo2.png"));
+       Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/Logo.png"));
        return retValue;
    } 
     
@@ -65,7 +65,6 @@ public class Login extends javax.swing.JFrame {
         jLabelCrearCuenta = new javax.swing.JLabel();
         jTextUsuario = new javax.swing.JTextField();
         jTextContraseña = new javax.swing.JPasswordField();
-        jTextContraseña2 = new javax.swing.JPasswordField();
         jLabelRecuperacion = new javax.swing.JLabel();
         jLabelIncorrecto = new javax.swing.JLabel();
         jLabelFondo = new javax.swing.JLabel();
@@ -106,12 +105,6 @@ public class Login extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTextContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 280, 360, 30));
-
-        jTextContraseña2.setBackground(new java.awt.Color(0, 28, 75));
-        jTextContraseña2.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        jTextContraseña2.setForeground(new java.awt.Color(255, 255, 255));
-        jTextContraseña2.setBorder(null);
-        getContentPane().add(jTextContraseña2, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 370, 360, 30));
 
         jLabelRecuperacion.setFont(new java.awt.Font("Times New Roman", 2, 18)); // NOI18N
         jLabelRecuperacion.setForeground(new java.awt.Color(4, 131, 140));
@@ -246,7 +239,6 @@ jLabelRecuperacion.setForeground(Color.white);
     private javax.swing.JLabel jLabelIniciarSesion;
     private javax.swing.JLabel jLabelRecuperacion;
     private javax.swing.JPasswordField jTextContraseña;
-    private javax.swing.JPasswordField jTextContraseña2;
     private javax.swing.JTextField jTextUsuario;
     // End of variables declaration//GEN-END:variables
 }

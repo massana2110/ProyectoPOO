@@ -14,7 +14,7 @@ import java.awt.Toolkit;
  * @author Frognas
  */
 public class MenuCuentas extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form MenuCuentas
      */
@@ -51,19 +51,17 @@ public class MenuCuentas extends javax.swing.JFrame {
         jLabelMovimientos = new javax.swing.JLabel();
         jLabelMovimientosText = new javax.swing.JLabel();
         jLabelReportes = new javax.swing.JLabel();
-        jLabelAlertas = new javax.swing.JLabel();
-        jLabelPrestamos = new javax.swing.JLabel();
         jLabelCuentas = new javax.swing.JLabel();
         jLabelInformacion = new javax.swing.JLabel();
         jLabelReportesText = new javax.swing.JLabel();
-        jLabelAlertasText = new javax.swing.JLabel();
-        jLabelPrestamosText = new javax.swing.JLabel();
         jLabelCuentasText = new javax.swing.JLabel();
         jLabelInformacionText = new javax.swing.JLabel();
         jLabelAñadirCuenta = new javax.swing.JLabel();
         jLabelTransferencia = new javax.swing.JLabel();
         jLabelTransferenciaText = new javax.swing.JLabel();
         jLabelAñadirCuentaText = new javax.swing.JLabel();
+        jLabelCerrarSesion = new javax.swing.JLabel();
+        jLabelCerrarSesionText = new javax.swing.JLabel();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -75,8 +73,14 @@ public class MenuCuentas extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelMovimientosMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabelMovimientosMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabelMovimientosMouseExited(evt);
+            }
         });
-        getContentPane().add(jLabelMovimientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, -1, -1));
+        getContentPane().add(jLabelMovimientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, -1, -1));
 
         jLabelMovimientosText.setFont(new java.awt.Font("Times New Roman", 2, 18)); // NOI18N
         jLabelMovimientosText.setForeground(new java.awt.Color(255, 255, 255));
@@ -92,22 +96,35 @@ public class MenuCuentas extends javax.swing.JFrame {
                 jLabelMovimientosTextMouseExited(evt);
             }
         });
-        getContentPane().add(jLabelMovimientosText, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, -1, -1));
+        getContentPane().add(jLabelMovimientosText, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, -1, -1));
 
         jLabelReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ReportesBlanco.png"))); // NOI18N
-        getContentPane().add(jLabelReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, -1, -1));
+        jLabelReportes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabelReportesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabelReportesMouseExited(evt);
+            }
+        });
+        getContentPane().add(jLabelReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, -1, -1));
 
-        jLabelAlertas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/AlertasBlanco.png"))); // NOI18N
-        getContentPane().add(jLabelAlertas, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 90, -1, -1));
-
-        jLabelPrestamos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/PrestamosBlanco.png"))); // NOI18N
-        getContentPane().add(jLabelPrestamos, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 90, -1, -1));
-
-        jLabelCuentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CuentasNegro.png"))); // NOI18N
-        getContentPane().add(jLabelCuentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 90, -1, -1));
+        jLabelCuentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CuentasAzul.png"))); // NOI18N
+        getContentPane().add(jLabelCuentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 90, -1, -1));
 
         jLabelInformacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/TutorialBlanco.png"))); // NOI18N
-        getContentPane().add(jLabelInformacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 90, -1, -1));
+        jLabelInformacion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelInformacionMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabelInformacionMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabelInformacionMouseExited(evt);
+            }
+        });
+        getContentPane().add(jLabelInformacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 80, -1, -1));
 
         jLabelReportesText.setFont(new java.awt.Font("Times New Roman", 2, 18)); // NOI18N
         jLabelReportesText.setForeground(new java.awt.Color(255, 255, 255));
@@ -120,42 +137,19 @@ public class MenuCuentas extends javax.swing.JFrame {
                 jLabelReportesTextMouseExited(evt);
             }
         });
-        getContentPane().add(jLabelReportesText, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, -1, -1));
-
-        jLabelAlertasText.setFont(new java.awt.Font("Times New Roman", 2, 18)); // NOI18N
-        jLabelAlertasText.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelAlertasText.setText("Alertas");
-        jLabelAlertasText.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabelAlertasTextMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabelAlertasTextMouseExited(evt);
-            }
-        });
-        getContentPane().add(jLabelAlertasText, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 110, -1, -1));
-
-        jLabelPrestamosText.setFont(new java.awt.Font("Times New Roman", 2, 18)); // NOI18N
-        jLabelPrestamosText.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelPrestamosText.setText("Prestamos");
-        jLabelPrestamosText.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabelPrestamosTextMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabelPrestamosTextMouseExited(evt);
-            }
-        });
-        getContentPane().add(jLabelPrestamosText, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 110, -1, -1));
+        getContentPane().add(jLabelReportesText, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 110, -1, -1));
 
         jLabelCuentasText.setFont(new java.awt.Font("Times New Roman", 2, 18)); // NOI18N
         jLabelCuentasText.setText("Cuentas");
-        getContentPane().add(jLabelCuentasText, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 110, -1, -1));
+        getContentPane().add(jLabelCuentasText, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 110, -1, -1));
 
         jLabelInformacionText.setFont(new java.awt.Font("Times New Roman", 2, 18)); // NOI18N
         jLabelInformacionText.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelInformacionText.setText("Informacion");
+        jLabelInformacionText.setText("Tutorial");
         jLabelInformacionText.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelInformacionTextMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabelInformacionTextMouseEntered(evt);
             }
@@ -163,18 +157,43 @@ public class MenuCuentas extends javax.swing.JFrame {
                 jLabelInformacionTextMouseExited(evt);
             }
         });
-        getContentPane().add(jLabelInformacionText, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 110, -1, -1));
+        getContentPane().add(jLabelInformacionText, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 110, -1, -1));
 
-        jLabelAñadirCuenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/AñadirCuenta.png"))); // NOI18N
+        jLabelAñadirCuenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/AñadirCuentaBlanco.png"))); // NOI18N
+        jLabelAñadirCuenta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelAñadirCuentaMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabelAñadirCuentaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabelAñadirCuentaMouseExited(evt);
+            }
+        });
         getContentPane().add(jLabelAñadirCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 580, -1, -1));
 
-        jLabelTransferencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/AñadirTransferencia.png"))); // NOI18N
+        jLabelTransferencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/AñadirTransferenciaBlanco.png"))); // NOI18N
+        jLabelTransferencia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelTransferenciaMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabelTransferenciaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabelTransferenciaMouseExited(evt);
+            }
+        });
         getContentPane().add(jLabelTransferencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 590, -1, -1));
 
         jLabelTransferenciaText.setFont(new java.awt.Font("Times New Roman", 2, 18)); // NOI18N
         jLabelTransferenciaText.setForeground(new java.awt.Color(255, 255, 255));
         jLabelTransferenciaText.setText("Añadir Transferencia");
         jLabelTransferenciaText.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelTransferenciaTextMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabelTransferenciaTextMouseEntered(evt);
             }
@@ -188,6 +207,9 @@ public class MenuCuentas extends javax.swing.JFrame {
         jLabelAñadirCuentaText.setForeground(new java.awt.Color(255, 255, 255));
         jLabelAñadirCuentaText.setText("Añadir Cuenta");
         jLabelAñadirCuentaText.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelAñadirCuentaTextMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabelAñadirCuentaTextMouseEntered(evt);
             }
@@ -197,7 +219,38 @@ public class MenuCuentas extends javax.swing.JFrame {
         });
         getContentPane().add(jLabelAñadirCuentaText, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 630, -1, -1));
 
-        jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Menu.png"))); // NOI18N
+        jLabelCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/EngranajeBlanco.png"))); // NOI18N
+        jLabelCerrarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelCerrarSesionMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabelCerrarSesionMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabelCerrarSesionMouseExited(evt);
+            }
+        });
+        getContentPane().add(jLabelCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 80, -1, -1));
+
+        jLabelCerrarSesionText.setFont(new java.awt.Font("Times New Roman", 2, 18)); // NOI18N
+        jLabelCerrarSesionText.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelCerrarSesionText.setText("Cerrar Sesión");
+        jLabelCerrarSesionText.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelCerrarSesionTextMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabelCerrarSesionTextMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabelCerrarSesionTextMouseExited(evt);
+            }
+        });
+        getContentPane().add(jLabelCerrarSesionText, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 110, -1, -1));
+
+        jLabelFondo.setForeground(new java.awt.Color(0, 0, 102));
+        jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Menu1.png"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
@@ -206,73 +259,62 @@ public class MenuCuentas extends javax.swing.JFrame {
     private void jLabelMovimientosTextMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMovimientosTextMouseEntered
         // TODO add your handling code here:
         jLabelMovimientosText.setForeground(Color.BLACK);
+        jLabelMovimientos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/MovimientosAzul.png")));
     }//GEN-LAST:event_jLabelMovimientosTextMouseEntered
 
     private void jLabelMovimientosTextMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMovimientosTextMouseExited
         // TODO add your handling code here:
         jLabelMovimientosText.setForeground(Color.WHITE);
+        jLabelMovimientos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/MovimientosBlanco.png")));
     }//GEN-LAST:event_jLabelMovimientosTextMouseExited
 
     private void jLabelReportesTextMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelReportesTextMouseEntered
         // TODO add your handling code here:
         jLabelReportesText.setForeground(Color.BLACK);
+        jLabelReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ReportesAzul.png")));
     }//GEN-LAST:event_jLabelReportesTextMouseEntered
 
     private void jLabelReportesTextMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelReportesTextMouseExited
         // TODO add your handling code here:
         jLabelReportesText.setForeground(Color.WHITE);
+        jLabelReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ReportesBlanco.png")));
     }//GEN-LAST:event_jLabelReportesTextMouseExited
-
-    private void jLabelAlertasTextMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelAlertasTextMouseEntered
-        // TODO add your handling code here:
-        jLabelAlertasText.setForeground(Color.BLACK);
-    }//GEN-LAST:event_jLabelAlertasTextMouseEntered
-
-    private void jLabelAlertasTextMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelAlertasTextMouseExited
-        // TODO add your handling code here:
-        jLabelAlertasText.setForeground(Color.WHITE);
-    }//GEN-LAST:event_jLabelAlertasTextMouseExited
-
-    private void jLabelPrestamosTextMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelPrestamosTextMouseEntered
-        // TODO add your handling code here:
-        jLabelPrestamosText.setForeground(Color.BLACK);
-    }//GEN-LAST:event_jLabelPrestamosTextMouseEntered
-
-    private void jLabelPrestamosTextMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelPrestamosTextMouseExited
-        // TODO add your handling code here:
-        jLabelPrestamosText.setForeground(Color.WHITE);
-
-    }//GEN-LAST:event_jLabelPrestamosTextMouseExited
 
     private void jLabelInformacionTextMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelInformacionTextMouseEntered
         // TODO add your handling code here:
                 jLabelInformacionText.setForeground(Color.BLACK);
+                jLabelInformacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/TutorialAzul.png")));
 
     }//GEN-LAST:event_jLabelInformacionTextMouseEntered
 
     private void jLabelInformacionTextMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelInformacionTextMouseExited
         // TODO add your handling code here:
         jLabelInformacionText.setForeground(Color.WHITE);
+         jLabelInformacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/TutorialBlanco.png")));
     }//GEN-LAST:event_jLabelInformacionTextMouseExited
 
     private void jLabelTransferenciaTextMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTransferenciaTextMouseEntered
         // TODO add your handling code here:
         jLabelTransferenciaText.setForeground(Color.BLACK);
+        jLabelTransferencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/AñadirTransferenciaAzul.png")));
     }//GEN-LAST:event_jLabelTransferenciaTextMouseEntered
 
     private void jLabelTransferenciaTextMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTransferenciaTextMouseExited
         // TODO add your handling code here:
         jLabelTransferenciaText.setForeground(Color.WHITE);
+        jLabelTransferencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/AñadirTransferenciaBlanco.png")));
     }//GEN-LAST:event_jLabelTransferenciaTextMouseExited
 
     private void jLabelAñadirCuentaTextMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelAñadirCuentaTextMouseEntered
         // TODO add your handling code here:
         jLabelAñadirCuentaText.setForeground(Color.BLACK);
+        jLabelAñadirCuenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/AñadirCuentaAzul.png")));
     }//GEN-LAST:event_jLabelAñadirCuentaTextMouseEntered
 
     private void jLabelAñadirCuentaTextMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelAñadirCuentaTextMouseExited
         // TODO add your handling code here:
         jLabelAñadirCuentaText.setForeground(Color.WHITE);
+        jLabelAñadirCuenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/AñadirCuentaBlanco.png")));
     }//GEN-LAST:event_jLabelAñadirCuentaTextMouseExited
 
     private void jLabelMovimientosTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMovimientosTextMouseClicked
@@ -286,6 +328,135 @@ public class MenuCuentas extends javax.swing.JFrame {
         new MenuMovimientos().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabelMovimientosMouseClicked
+
+    private void jLabelCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCerrarSesionMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabelCerrarSesionMouseClicked
+
+    private void jLabelCerrarSesionTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCerrarSesionTextMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabelCerrarSesionTextMouseClicked
+
+    private void jLabelCerrarSesionTextMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCerrarSesionTextMouseEntered
+        // TODO add your handling code here:
+        jLabelCerrarSesionText.setForeground(Color.BLACK);
+        jLabelCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/EngranajeAzul.png")));
+        
+    }//GEN-LAST:event_jLabelCerrarSesionTextMouseEntered
+
+    private void jLabelCerrarSesionTextMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCerrarSesionTextMouseExited
+        // TODO add your handling code here:
+        jLabelCerrarSesionText.setForeground(Color.WHITE);
+        jLabelCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/EngranajeBlanco.png")));
+    }//GEN-LAST:event_jLabelCerrarSesionTextMouseExited
+
+    private void jLabelMovimientosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMovimientosMouseEntered
+        // TODO add your handling code here:
+        jLabelMovimientos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/MovimientosAzul.png")));
+         jLabelMovimientosText.setForeground(Color.BLACK);
+        
+    }//GEN-LAST:event_jLabelMovimientosMouseEntered
+
+    private void jLabelMovimientosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMovimientosMouseExited
+        // TODO add your handling code here:
+        jLabelMovimientos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/MovimientosBlanco.png")));
+        jLabelMovimientosText.setForeground(Color.WHITE);
+    }//GEN-LAST:event_jLabelMovimientosMouseExited
+
+    private void jLabelReportesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelReportesMouseEntered
+        // TODO add your handling code here:
+        jLabelReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ReportesAzul.png")));
+         jLabelReportesText.setForeground(Color.BLACK);
+    }//GEN-LAST:event_jLabelReportesMouseEntered
+
+    private void jLabelReportesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelReportesMouseExited
+        // TODO add your handling code here:
+        jLabelReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ReportesBlanco.png")));
+        jLabelReportesText.setForeground(Color.WHITE);
+    }//GEN-LAST:event_jLabelReportesMouseExited
+
+    private void jLabelInformacionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelInformacionMouseEntered
+        // TODO add your handling code here:
+        jLabelInformacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/TutorialAzul.png")));
+        jLabelInformacionText.setForeground(Color.BLACK);
+    }//GEN-LAST:event_jLabelInformacionMouseEntered
+
+    private void jLabelInformacionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelInformacionMouseExited
+        // TODO add your handling code here:
+        jLabelInformacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/TutorialBlanco.png")));
+        jLabelInformacionText.setForeground(Color.WHITE);
+    }//GEN-LAST:event_jLabelInformacionMouseExited
+
+    private void jLabelCerrarSesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCerrarSesionMouseEntered
+        // TODO add your handling code here:
+        jLabelCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/EngranajeAzul.png")));
+        jLabelCerrarSesionText.setForeground(Color.BLACK);
+        
+    }//GEN-LAST:event_jLabelCerrarSesionMouseEntered
+
+    private void jLabelCerrarSesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCerrarSesionMouseExited
+        // TODO add your handling code here:
+        jLabelCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/EngranajeBlanco.png")));
+        jLabelCerrarSesionText.setForeground(Color.WHITE);
+    }//GEN-LAST:event_jLabelCerrarSesionMouseExited
+
+    private void jLabelTransferenciaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTransferenciaMouseEntered
+        // TODO add your handling code here:
+        jLabelTransferencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/AñadirTransferenciaAzul.png")));
+        jLabelTransferenciaText.setForeground(Color.BLACK);
+        
+    }//GEN-LAST:event_jLabelTransferenciaMouseEntered
+
+    private void jLabelTransferenciaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTransferenciaMouseExited
+        // TODO add your handling code here:
+        jLabelTransferencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/AñadirTransferenciaBlanco.png")));
+        jLabelTransferenciaText.setForeground(Color.WHITE);
+    }//GEN-LAST:event_jLabelTransferenciaMouseExited
+
+    private void jLabelAñadirCuentaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelAñadirCuentaMouseEntered
+        // TODO add your handling code here:
+        jLabelAñadirCuenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/AñadirCuentaAzul.png")));
+        jLabelAñadirCuentaText.setForeground(Color.BLACK);
+    }//GEN-LAST:event_jLabelAñadirCuentaMouseEntered
+
+    private void jLabelAñadirCuentaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelAñadirCuentaMouseExited
+        // TODO add your handling code here:
+         jLabelAñadirCuenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/AñadirCuentaBlanco.png")));
+         jLabelAñadirCuentaText.setForeground(Color.WHITE);
+    }//GEN-LAST:event_jLabelAñadirCuentaMouseExited
+
+    private void jLabelInformacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelInformacionMouseClicked
+        // TODO add your handling code here:
+        new Tutorial1().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabelInformacionMouseClicked
+
+    private void jLabelInformacionTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelInformacionTextMouseClicked
+        // TODO add your handling code here:
+        new Tutorial1().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabelInformacionTextMouseClicked
+
+    private void jLabelAñadirCuentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelAñadirCuentaMouseClicked
+        // TODO add your handling code here:
+        new AñadirCuenta().setVisible(true);
+        
+    }//GEN-LAST:event_jLabelAñadirCuentaMouseClicked
+
+    private void jLabelAñadirCuentaTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelAñadirCuentaTextMouseClicked
+        // TODO add your handling code here:
+        new AñadirCuenta().setVisible(true);
+    }//GEN-LAST:event_jLabelAñadirCuentaTextMouseClicked
+
+    private void jLabelTransferenciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTransferenciaMouseClicked
+        // TODO add your handling code here:
+        new AñadirTransferencia().setVisible(true);
+    }//GEN-LAST:event_jLabelTransferenciaMouseClicked
+
+    private void jLabelTransferenciaTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTransferenciaTextMouseClicked
+        // TODO add your handling code here:
+        new AñadirTransferencia().setVisible(true);
+    }//GEN-LAST:event_jLabelTransferenciaTextMouseClicked
 
     /**
      * @param args the command line arguments
@@ -323,10 +494,10 @@ public class MenuCuentas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabelAlertas;
-    private javax.swing.JLabel jLabelAlertasText;
     private javax.swing.JLabel jLabelAñadirCuenta;
     private javax.swing.JLabel jLabelAñadirCuentaText;
+    private javax.swing.JLabel jLabelCerrarSesion;
+    private javax.swing.JLabel jLabelCerrarSesionText;
     private javax.swing.JLabel jLabelCuentas;
     private javax.swing.JLabel jLabelCuentasText;
     private javax.swing.JLabel jLabelFondo;
@@ -334,8 +505,6 @@ public class MenuCuentas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelInformacionText;
     private javax.swing.JLabel jLabelMovimientos;
     private javax.swing.JLabel jLabelMovimientosText;
-    private javax.swing.JLabel jLabelPrestamos;
-    private javax.swing.JLabel jLabelPrestamosText;
     private javax.swing.JLabel jLabelReportes;
     private javax.swing.JLabel jLabelReportesText;
     private javax.swing.JLabel jLabelTransferencia;
