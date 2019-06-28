@@ -115,6 +115,11 @@ DBQuery query;
         jComboBoxCategoria.setBackground(new java.awt.Color(0, 28, 75));
         jComboBoxCategoria.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jComboBoxCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxCategoriaActionPerformed(evt);
+            }
+        });
         getContentPane().add(jComboBoxCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 230, 330, 30));
 
         jTextFieldDescripcion.setBackground(new java.awt.Color(0, 28, 75));
@@ -164,6 +169,10 @@ DBQuery query;
         // TODO add your handling code here:
         jTextFieldFecha.setText("");
     }//GEN-LAST:event_jTextFieldFechaMouseClicked
+
+    private void jComboBoxCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCategoriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxCategoriaActionPerformed
 
    private void jLabelGuardarMouseClicked(java.awt.event.MouseEvent evt) {                                           
         // TODO add your handling code here
