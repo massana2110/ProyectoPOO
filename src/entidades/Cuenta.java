@@ -5,16 +5,17 @@ public class Cuenta {
    private String nombre;
    private String descripcion;
    private double saldo;
-
+   private String tarjeta;
    
   public void Cuenta(){
       
   }
   
-  public void Cuenta(String unNombre, String unaDescripcion, double unSaldo){
+  public void Cuenta(String unNombre, String unaDescripcion, double unSaldo, String tipoTarjeta){
       this.nombre = unNombre;
       this.descripcion = unaDescripcion;
       this.saldo = unSaldo;
+      this.tarjeta = tipoTarjeta;
       
   }
 
@@ -40,6 +41,14 @@ public class Cuenta {
 
     public void setSaldo(double saldo) {
         this.saldo = saldo;
+    }
+    
+     public String getTarjeta(){
+        return tarjeta;
+    }
+    
+    public void setTarjeta(String tarjeta){
+        this.tarjeta = tarjeta;        
     }
     
     public double abonarCuenta(double monto){

@@ -7,28 +7,35 @@ package Interfaz;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import sql.DBQuery;
 
 /**
  *
  * @author Frognas
  */
 public class AñadirCuenta extends javax.swing.JFrame {
-
+    
+     DBQuery query;
     /**
      * Creates new form AñadirCuenta
      */
     public AñadirCuenta() {
         initComponents();
         this.setLocationRelativeTo(null);
-        
+        query = new DBQuery();
     }
-    public Image getIconImage(){
+ 
+        public Image getIconImage(){
        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/Logo.png"));
        return retValue;
    } 
     public void limpiarCampos(){
-        jTextFieldNombreCuenta.setText("");
-        jTextFieldSaldoInicial.setText("");
+        txtNombreCuenta.setText("");
+        txtSaldoInicial.setText("");
+        txtTipoTarjeta.setText("");
         
     }
 
@@ -41,90 +48,168 @@ public class AñadirCuenta extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabelSaldo = new javax.swing.JLabel();
-        jLabelNombre = new javax.swing.JLabel();
-        jLabelTipoCuenta = new javax.swing.JLabel();
-        jLabelGuardar = new javax.swing.JLabel();
-        jLabelCancelar = new javax.swing.JLabel();
-        jTextFieldSaldoInicial = new javax.swing.JTextField();
-        jTextFieldNombreCuenta = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabelFondo = new javax.swing.JLabel();
+        imgSaldo = new javax.swing.JLabel();
+        imgNombre = new javax.swing.JLabel();
+        imgTipoTarjeta = new javax.swing.JLabel();
+        lblGuardar = new javax.swing.JLabel();
+        lblCancelar = new javax.swing.JLabel();
+        txtSaldoInicial = new javax.swing.JTextField();
+        txtNombreCuenta = new javax.swing.JTextField();
+        lblFondo = new javax.swing.JLabel();
+        txtTipoTarjeta = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(getIconImage());
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabelSaldo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Saldo.png"))); // NOI18N
-        getContentPane().add(jLabelSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 290, -1, -1));
+        imgSaldo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Saldo.png"))); // NOI18N
+        getContentPane().add(imgSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 290, -1, -1));
 
-        jLabelNombre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/NombreLapiz.png"))); // NOI18N
-        getContentPane().add(jLabelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 153, -1, -1));
+        imgNombre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/NombreLapiz.png"))); // NOI18N
+        getContentPane().add(imgNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 153, -1, -1));
 
-        jLabelTipoCuenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CuentasBlanco.png"))); // NOI18N
-        getContentPane().add(jLabelTipoCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 210, -1, -1));
+        imgTipoTarjeta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CuentasBlanco.png"))); // NOI18N
+        getContentPane().add(imgTipoTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 210, -1, -1));
 
-        jLabelGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/BotonGuardar1.png"))); // NOI18N
-        getContentPane().add(jLabelGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 520, -1, -1));
-
-        jLabelCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/BotonCancelar1.png"))); // NOI18N
-        jLabelCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/BotonGuardar1.png"))); // NOI18N
+        lblGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelCancelarMouseClicked(evt);
+                lblGuardarMouseClicked(evt);
             }
         });
-        getContentPane().add(jLabelCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 520, -1, -1));
+        getContentPane().add(lblGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 520, -1, -1));
 
-        jTextFieldSaldoInicial.setBackground(new java.awt.Color(0, 28, 75));
-        jTextFieldSaldoInicial.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        jTextFieldSaldoInicial.setForeground(new java.awt.Color(255, 255, 255));
-        jTextFieldSaldoInicial.setText("$Saldo Inicial...");
-        jTextFieldSaldoInicial.setBorder(null);
-        jTextFieldSaldoInicial.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/BotonCancelar1.png"))); // NOI18N
+        lblCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextFieldSaldoInicialMouseClicked(evt);
+                lblCancelarMouseClicked(evt);
             }
         });
-        getContentPane().add(jTextFieldSaldoInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 300, 330, 30));
+        getContentPane().add(lblCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 520, -1, -1));
 
-        jTextFieldNombreCuenta.setBackground(new java.awt.Color(0, 28, 75));
-        jTextFieldNombreCuenta.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        jTextFieldNombreCuenta.setForeground(new java.awt.Color(255, 255, 255));
-        jTextFieldNombreCuenta.setText("Nombre Cuenta...");
-        jTextFieldNombreCuenta.setBorder(null);
-        jTextFieldNombreCuenta.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtSaldoInicial.setBackground(new java.awt.Color(0, 28, 75));
+        txtSaldoInicial.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        txtSaldoInicial.setForeground(new java.awt.Color(255, 255, 255));
+        txtSaldoInicial.setText("$ Saldo Inicial...");
+        txtSaldoInicial.setBorder(null);
+        txtSaldoInicial.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextFieldNombreCuentaMouseClicked(evt);
+                txtSaldoInicialMouseClicked(evt);
             }
         });
-        getContentPane().add(jTextFieldNombreCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 160, 320, 30));
+        txtSaldoInicial.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtSaldoInicialKeyTyped(evt);
+            }
+        });
+        getContentPane().add(txtSaldoInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 290, 330, 30));
 
-        jComboBox1.setBackground(new java.awt.Color(0, 28, 75));
-        jComboBox1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 230, 330, 30));
+        txtNombreCuenta.setBackground(new java.awt.Color(0, 28, 75));
+        txtNombreCuenta.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        txtNombreCuenta.setForeground(new java.awt.Color(255, 255, 255));
+        txtNombreCuenta.setText("Nombre Cuenta...");
+        txtNombreCuenta.setBorder(null);
+        txtNombreCuenta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtNombreCuentaMouseClicked(evt);
+            }
+        });
+        getContentPane().add(txtNombreCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 160, 330, 30));
 
-        jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/AñadirCuentaInterfaz.png"))); // NOI18N
-        getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/AñadirCuentaInterfaz.png"))); // NOI18N
+        lblFondo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                lblFondoKeyTyped(evt);
+            }
+        });
+        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -5, 730, 680));
+
+        txtTipoTarjeta.setBackground(new java.awt.Color(0, 28, 75));
+        txtTipoTarjeta.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        txtTipoTarjeta.setForeground(new java.awt.Color(255, 255, 255));
+        txtTipoTarjeta.setText("Tipo de cuenta (debito,credito,etc)");
+        txtTipoTarjeta.setBorder(null);
+        txtTipoTarjeta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtTipoTarjetaMouseClicked(evt);
+            }
+        });
+        txtTipoTarjeta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTipoTarjetaActionPerformed(evt);
+            }
+        });
+        txtTipoTarjeta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTipoTarjetaKeyTyped(evt);
+            }
+        });
+        getContentPane().add(txtTipoTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 220, 330, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabelCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCancelarMouseClicked
+    private void lblCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCancelarMouseClicked
         // TODO add your handling code here:
          
         this.setVisible(false);
-    }//GEN-LAST:event_jLabelCancelarMouseClicked
+    }//GEN-LAST:event_lblCancelarMouseClicked
 
-    private void jTextFieldNombreCuentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldNombreCuentaMouseClicked
+    private void txtNombreCuentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreCuentaMouseClicked
         // TODO add your handling code here:
-        jTextFieldNombreCuenta.setText("");
-    }//GEN-LAST:event_jTextFieldNombreCuentaMouseClicked
+        txtNombreCuenta.setText("");
+    }//GEN-LAST:event_txtNombreCuentaMouseClicked
 
-    private void jTextFieldSaldoInicialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldSaldoInicialMouseClicked
+    private void txtSaldoInicialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSaldoInicialMouseClicked
         // TODO add your handling code here:
-        jTextFieldSaldoInicial.setText("");
-    }//GEN-LAST:event_jTextFieldSaldoInicialMouseClicked
+        txtSaldoInicial.setText("");
+    }//GEN-LAST:event_txtSaldoInicialMouseClicked
+
+    private void lblFondoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lblFondoKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblFondoKeyTyped
+
+    private void txtSaldoInicialKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSaldoInicialKeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+         if (!(Character.isDigit(c) || c==KeyEvent.VK_BACK_SPACE || c==KeyEvent.VK_DELETE )){
+            getToolkit().beep();
+            evt.consume();
+            
+        }
+    }//GEN-LAST:event_txtSaldoInicialKeyTyped
+
+    private void lblGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblGuardarMouseClicked
+        // TODO add your handling code here:
+              
+          if (txtNombreCuenta.getText().isEmpty() || txtSaldoInicial.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Falta datos.", "Llena todos los campos", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try{
+                if( query.añadirCuenta(txtNombreCuenta.getText() , txtTipoTarjeta.getText(),  Double.parseDouble(txtSaldoInicial.getText())) ){
+                    
+                    JOptionPane.showMessageDialog(this, "CUENTA CREADA CON EXITO", "SUCCES", JOptionPane.INFORMATION_MESSAGE);
+                } else{
+                    JOptionPane.showMessageDialog(this, "ERROR AL CONSULTAR LA BASE DE DATOS", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_lblGuardarMouseClicked
+
+    private void txtTipoTarjetaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTipoTarjetaMouseClicked
+        // TODO add your handling code here:
+        txtTipoTarjeta.setText("");
+    }//GEN-LAST:event_txtTipoTarjetaMouseClicked
+
+    private void txtTipoTarjetaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTipoTarjetaKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTipoTarjetaKeyTyped
+
+    private void txtTipoTarjetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTipoTarjetaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTipoTarjetaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,14 +247,14 @@ public class AñadirCuenta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabelCancelar;
-    private javax.swing.JLabel jLabelFondo;
-    private javax.swing.JLabel jLabelGuardar;
-    private javax.swing.JLabel jLabelNombre;
-    private javax.swing.JLabel jLabelSaldo;
-    private javax.swing.JLabel jLabelTipoCuenta;
-    private javax.swing.JTextField jTextFieldNombreCuenta;
-    private javax.swing.JTextField jTextFieldSaldoInicial;
+    private javax.swing.JLabel imgNombre;
+    private javax.swing.JLabel imgSaldo;
+    private javax.swing.JLabel imgTipoTarjeta;
+    private javax.swing.JLabel lblCancelar;
+    private javax.swing.JLabel lblFondo;
+    private javax.swing.JLabel lblGuardar;
+    private javax.swing.JTextField txtNombreCuenta;
+    private javax.swing.JTextField txtSaldoInicial;
+    private javax.swing.JTextField txtTipoTarjeta;
     // End of variables declaration//GEN-END:variables
 }

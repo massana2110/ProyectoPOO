@@ -171,7 +171,7 @@ jLabelRecuperacion.setForeground(Color.white);
                 limpiarCampos();
                 jLabelIncorrecto.setVisible(true);
             }
-            jLabelIncorrecto.setVisible(false);
+            //jLabelIncorrecto.setVisible(false);
         } catch(SQLException e){
             jLabelIncorrecto.setVisible(true);
         }

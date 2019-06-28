@@ -7,11 +7,14 @@
 package sql;
 
 import entidades.Usuario;
+import entidades.Cuenta;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 
@@ -110,6 +113,50 @@ public class DBQuery {
         }
         return false;
     }
+    
+    public boolean añadirCuenta (String nombre,String tipoTarjeta ,double unSaldo) throws SQLException{
+        Connection con = conexion.getConnection();
+        boolean isSuccess = false;
+        String query = "INSERT INTO cuenta (nombre, tipo_tarjeta, saldo) VALUES (?,?,?)";
+        
+        try{
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, nombre);
+            ps.setString(2, tipoTarjeta);
+            ps.setDouble(3, unSaldo);
+            
+            if(ps.executeUpdate() > 0){
+                isSuccess = true;
+            }
+        } catch(Exception error){
+            isSuccess = false;
+            error.printStackTrace();
+            
+        } 
+        
+        return true;   
+} 
+    
+    public List<Cuenta> getAllCuentas(){
+        Connection conn = conexion.getConnection();
+        List<Cuenta> cuentas = new ArrayList();
+        String query = "SELECT * FROM cuenta WHERE username = ?" ;
+        try{
+            PreparedStatement stm = conn.prepareStatement(query);
+            ResultSet rs = stm.executeQuery();
+            while(rs.next()){
+                Cuenta cuenta = new Cuenta();
+                cuenta.setNombre(rs.getString("nombre"));
+                cuenta.setTarjeta(rs.getString("tipo_tarjeta"));
+                cuenta.setSaldo(rs.getDouble("name"));
+                cuentas.add(cuenta);
+             }
+            //conn.close();
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return cuentas;
+}    
     
     public String MD5(String md5){
         try{

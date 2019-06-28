@@ -3,8 +3,8 @@ package entidades;
 
 public class CuentaEfectivo extends Cuenta {
 
-public CuentaEfectivo(String unNombre, String unaDescripcion, double unSaldo){
-    super.Cuenta(unNombre, unaDescripcion, unSaldo);
+public CuentaEfectivo(String unNombre, String unaDescripcion, double unSaldo, String tipoTarjeta){
+    super.Cuenta(unNombre, unaDescripcion, unSaldo, tipoTarjeta);
 }
 
     @Override

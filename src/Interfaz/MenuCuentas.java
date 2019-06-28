@@ -32,6 +32,78 @@ public class MenuCuentas extends javax.swing.JFrame {
        return retValue;
    } 
  
+        
+        /*
+        String headers[] = {"Username","Password","Name"};
+        String data[][] = getData();
+        JPopupMenu popupMenu = new JPopupMenu();
+        JMenuItem editUserItem = new JMenuItem("Edit user");
+        JMenuItem deleteUserItem = new JMenuItem("Delete user");
+        popupMenu.add(editUserItem);
+        popupMenu.add(deleteUserItem);
+           
+        DefaultTableModel model = new DefaultTableModel(data, headers);
+        tbUsers.setModel(model);
+        tbUsers.setComponentPopupMenu(popupMenu);
+        tbUsers.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                Point point = e.getPoint();
+                int currentRow = tbUsers.rowAtPoint(point);
+                tbUsers.setRowSelectionInterval(currentRow, currentRow);
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+            }
+        });
+        
+        editUserItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+            }
+        });
+        deleteUserItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selectedRow = tbUsers.getSelectedRow();
+                try{
+                    if(userDao.deleteUser(users.get(selectedRow).getUsername())){
+                        model.removeRow(selectedRow);
+                    }else{
+                        JOptionPane.showMessageDialog(me, "Something is worng, please try again","Error",JOptionPane.ERROR_MESSAGE);
+                    }
+                }catch(SQLException ex){
+                    System.out.println("Error: " + ex.getMessage());
+                }
+            }
+        });
+        editUserItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selectedRow = tbUsers.getSelectedRow();
+                
+                EditUser editUser = new EditUser(me,users.get(selectedRow),model,selectedRow);
+                me.setVisible(false);
+                editUser.setVisible(true);
+                
+            }
+        });
+    }
+ */
      
     /**
      * This method is called from within the constructor to initialize the form.
