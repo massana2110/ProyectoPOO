@@ -55,8 +55,8 @@ public class AñadirCuenta extends javax.swing.JFrame {
         lblCancelar = new javax.swing.JLabel();
         txtSaldoInicial = new javax.swing.JTextField();
         txtNombreCuenta = new javax.swing.JTextField();
-        lblFondo = new javax.swing.JLabel();
         txtTipoTarjeta = new javax.swing.JTextField();
+        lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(getIconImage());
@@ -116,14 +116,6 @@ public class AñadirCuenta extends javax.swing.JFrame {
         });
         getContentPane().add(txtNombreCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 160, 330, 30));
 
-        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/AñadirCuentaInterfaz.png"))); // NOI18N
-        lblFondo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                lblFondoKeyTyped(evt);
-            }
-        });
-        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -5, 730, 680));
-
         txtTipoTarjeta.setBackground(new java.awt.Color(0, 28, 75));
         txtTipoTarjeta.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         txtTipoTarjeta.setForeground(new java.awt.Color(255, 255, 255));
@@ -145,6 +137,14 @@ public class AñadirCuenta extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtTipoTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 220, 330, 30));
+
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/AñadirCuentaInterfaz.png"))); // NOI18N
+        lblFondo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                lblFondoKeyTyped(evt);
+            }
+        });
+        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -5, 1200, 680));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
