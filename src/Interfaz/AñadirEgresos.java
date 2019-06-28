@@ -7,13 +7,17 @@ package Interfaz;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import sql.DBQuery;
+import entidades.*;
 
 /**
  *
  * @author Frognas
  */
 public class AñadirEgresos extends javax.swing.JFrame {
-
+DBQuery query;
     /**
      * Creates new form AñadirCuenta
      */
@@ -162,6 +166,28 @@ public class AñadirEgresos extends javax.swing.JFrame {
         jTextFieldFecha.setText("");
     }//GEN-LAST:event_jTextFieldFechaMouseClicked
 
+        private void jLabelGuardarMouseClicked(java.awt.event.MouseEvent evt) {                                           
+        // TODO add your handling code here
+       Usuario usuario = new Usuario();
+       int idUsuario = query.buscarIdUsuario(usuario.getUsername());
+       int comboBoxCategoria =(int)  jComboBoxCategoria.getSelectedIndex();
+       int comboBoxCuenta = (int)  jComboBoxCuenta.getSelectedIndex();
+       double textFieldValor = Double.parseDouble(jTextFieldValor.getText());
+        if (jTextFieldValor.getText().isEmpty() || textFieldValor == 0 || comboBoxCategoria < 0 || comboBoxCuenta < 0 || jTextFieldFecha.getText().isEmpty()|| jTextFieldDescripcion.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "ERROR: EXISTEN CAMPOS SIN DATOS O CON DATOS INCOMPATIBLES", "ALERT", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try{
+                if (query.añadirIngreso(idUsuario, comboBoxCuenta, comboBoxCategoria, textFieldValor, jTextFieldFecha.getText(),jTextFieldDescripcion.getText())) {
+                    JOptionPane.showMessageDialog(this, "DINERO RETIRADO DE SU CUENTA ", "SUCCES", JOptionPane.INFORMATION_MESSAGE);
+                } else{
+                    JOptionPane.showMessageDialog(this, "ERROR AL CONSULTAR LA BASE DE DATOS", "ERROR", JOptionPane.ERROR_MESSAGE);
+               }
+            } catch(Exception error){
+                error.printStackTrace();
+            }
+        }
+    }                                          
+    
     /**
      * @param args the command line arguments
      */

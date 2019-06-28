@@ -6,13 +6,13 @@
 
 package sql;
 
-import entidades.Usuario;
-import entidades.Cuenta;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import entidades.*;
+import javax.swing.JOptionPane;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -172,4 +172,80 @@ public class DBQuery {
         }
         return null;
     }
+        public boolean añadirIngreso(int idUsuario, int idCuenta, int idCategoria, double monto , String fecha, String descripcion){
+          String queryI = "INSERT INTO movimiento values (idMovimiento, id, idCuenta,idCategoria,,monto,fecha,descripcion)";
+     
+              try{
+            Connection con = conexion.getConnection();
+            PreparedStatement pstm = con.prepareStatement(queryI);
+            pstm.setInt(1,1);
+            pstm.setInt(2, idUsuario);
+            pstm.setDouble(5, monto);
+            pstm.setString(6, fecha);
+            pstm.setString(7, descripcion);
+            
+            if(pstm.executeUpdate() > 0){
+                return true;
+               
+            }
+        } catch(Exception error){
+            error.printStackTrace();
+            return false;
+        } 
+        
+        return true;
+    }
+    
+        
+    public boolean añadirEgreso(int idUsuario, int idCuenta, int idCategoria, double monto , String fecha, String descripcion){
+          Movimiento movimiento = new   Movimiento();
+          Cuenta cuenta = new Cuenta();
+          String queryI = "INSERT INTO movimiento values (idMovimiento, id, idCuenta,idCategoria,,monto,fecha,descripcion)";
+     
+              try{
+            Connection con = conexion.getConnection();
+            PreparedStatement pstm = con.prepareStatement(queryI);
+            pstm.setInt(1,1);
+            pstm.setInt(2, idUsuario);
+            pstm.setDouble(5, monto);
+            pstm.setString(6, fecha);
+            pstm.setString(7, descripcion);
+            
+            if(pstm.executeUpdate() > 0){
+                return true;
+               
+            }
+        } catch(Exception error){
+            error.printStackTrace();
+            return false;
+        } 
+        
+        return true;
+    }
+    
+    public int buscarIdUsuario(String nombre) {
+    int id = 0;
+
+   String query  =  "SELECT idUsuario FROM cuentas WHERE nombre = ?";
+
+    try (
+           Connection con = conexion.getConnection();
+           PreparedStatement ps = con.prepareStatement(query);
+           ps.setString(1,nombre);
+            ResultSet rs = ps.executeQuery();
+        ) 
+    {
+
+
+        while (rs.next()) { 
+            id = rs.getInt("idUsuario");
+        }
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "SQLException: " + e.getMessage(), "Error:vuscarIdUsuario()", JOptionPane.ERROR_MESSAGE);
+    }
+
+    return id;
+}
+    
 }
