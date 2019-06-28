@@ -395,13 +395,13 @@ public class MenuMovimientos extends javax.swing.JFrame {
 
     private void jLabelIngresosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelIngresosMouseClicked
         // TODO add your handling code here:
-        new AñadirIngresos().setVisible(true);
+        new AñadirIngresos(user).setVisible(true);
         
     }//GEN-LAST:event_jLabelIngresosMouseClicked
 
     private void jLabelIngresosTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelIngresosTextMouseClicked
         // TODO add your handling code here:
-        new AñadirIngresos().setVisible(true);
+        new AñadirIngresos(user).setVisible(true);
     }//GEN-LAST:event_jLabelIngresosTextMouseClicked
 
     private void jLabelEgresosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelEgresosMouseClicked

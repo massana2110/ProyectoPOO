@@ -17,12 +17,15 @@ import entidades.*;
  */
 public class AñadirIngresos extends javax.swing.JFrame {
 DBQuery query;
+Usuario usuario;
     /**
      * Creates new form AñadirCuenta
      */
-    public AñadirIngresos() {
+    public AñadirIngresos(Usuario usuario) {
         initComponents();
         this.setLocationRelativeTo(null);
+        query = new DBQuery();
+        this.usuario = usuario;
     }
     public Image getIconImage(){
        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/Logo.png"));
@@ -46,11 +49,12 @@ DBQuery query;
         jLabelCancelar = new javax.swing.JLabel();
         jTextFieldValor = new javax.swing.JTextField();
         jTextFieldFecha = new javax.swing.JTextField();
-        jComboBoxCuenta = new javax.swing.JComboBox<>();
         jLabelDescripcion = new javax.swing.JLabel();
         jLabelCategoria = new javax.swing.JLabel();
         jComboBoxCategoria = new javax.swing.JComboBox<>();
         jTextFieldDescripcion = new javax.swing.JTextField();
+        jTextFieldFecha1 = new javax.swing.JTextField();
+        jTextField1 = new javax.swing.JTextField();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -101,11 +105,6 @@ DBQuery query;
         });
         getContentPane().add(jTextFieldFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 370, 320, 30));
 
-        jComboBoxCuenta.setBackground(new java.awt.Color(0, 28, 75));
-        jComboBoxCuenta.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jComboBoxCuenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBoxCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 300, 330, 30));
-
         jLabelDescripcion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/NombreLapiz.png"))); // NOI18N
         getContentPane().add(jLabelDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 433, -1, -1));
 
@@ -114,7 +113,7 @@ DBQuery query;
 
         jComboBoxCategoria.setBackground(new java.awt.Color(0, 28, 75));
         jComboBoxCategoria.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jComboBoxCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pension", "Sueldo", "Prestamo", "Otros" }));
         jComboBoxCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxCategoriaActionPerformed(evt);
@@ -138,6 +137,26 @@ DBQuery query;
             }
         });
         getContentPane().add(jTextFieldDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 440, 320, 30));
+
+        jTextFieldFecha1.setBackground(new java.awt.Color(0, 28, 75));
+        jTextFieldFecha1.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        jTextFieldFecha1.setForeground(new java.awt.Color(255, 255, 255));
+        jTextFieldFecha1.setText("Fecha...");
+        jTextFieldFecha1.setBorder(null);
+        jTextFieldFecha1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextFieldFecha1MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jTextFieldFecha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 370, 320, 30));
+
+        jTextField1.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 302, 330, 30));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/AñadirIngresosInterfaz.png"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -174,18 +193,26 @@ DBQuery query;
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxCategoriaActionPerformed
 
+    private void jTextFieldFecha1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldFecha1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldFecha1MouseClicked
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
    private void jLabelGuardarMouseClicked(java.awt.event.MouseEvent evt) {                                           
         // TODO add your handling code here
-       Usuario usuario = new Usuario();
        int idUsuario = query.buscarIdUsuario(usuario.getUsername());
        int comboBoxCategoria =(int)  jComboBoxCategoria.getSelectedIndex();
-       int comboBoxCuenta = (int)  jComboBoxCuenta.getSelectedIndex();
+       String comboBoxCuenta =  new String(jTextField1.getText());
        double textFieldValor = Double.parseDouble(jTextFieldValor.getText());
-        if (jTextFieldValor.getText().isEmpty()|| textFieldValor == 0 || comboBoxCategoria < 0 || comboBoxCuenta < 0 || jTextFieldFecha.getText().isEmpty()|| jTextFieldDescripcion.getText().isEmpty()) {
+        if (jTextFieldValor.getText().isEmpty()|| textFieldValor == 0 || comboBoxCategoria < 0 || jTextField1.getText().isEmpty() || jTextFieldFecha.getText().isEmpty()|| jTextFieldDescripcion.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "ERROR: EXISTEN CAMPOS SIN DATOS O CON DATOS INCOMPATIBLES", "ALERT", JOptionPane.WARNING_MESSAGE);
         } else {
             try{
-                if (query.añadirIngreso(idUsuario, comboBoxCuenta, comboBoxCategoria, textFieldValor, jTextFieldFecha.getText(),jTextFieldDescripcion.getText())) {
+                
+                if (query.añadirIngreso(idUsuario, comboBoxCategoria, comboBoxCategoria, textFieldValor, jTextFieldFecha.getText(),jTextFieldDescripcion.getText())) {
                     JOptionPane.showMessageDialog(this, "DINERO INGRESADO A SU CUENTA CON EXITO ", "SUCCES", JOptionPane.INFORMATION_MESSAGE);
                 } else{
                     JOptionPane.showMessageDialog(this, "ERROR AL CONSULTAR LA BASE DE DATOS", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -199,42 +226,10 @@ DBQuery query;
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AñadirIngresos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AñadirIngresos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AñadirIngresos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AñadirIngresos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AñadirIngresos().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> jComboBoxCategoria;
-    private javax.swing.JComboBox<String> jComboBoxCuenta;
     private javax.swing.JLabel jLabelCancelar;
     private javax.swing.JLabel jLabelCategoria;
     private javax.swing.JLabel jLabelCuenta;
@@ -243,8 +238,10 @@ DBQuery query;
     private javax.swing.JLabel jLabelFondo;
     private javax.swing.JLabel jLabelGuardar;
     private javax.swing.JLabel jLabelValor;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextFieldDescripcion;
     private javax.swing.JTextField jTextFieldFecha;
+    private javax.swing.JTextField jTextFieldFecha1;
     private javax.swing.JTextField jTextFieldValor;
     // End of variables declaration//GEN-END:variables
 }

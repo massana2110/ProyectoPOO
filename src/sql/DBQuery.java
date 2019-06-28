@@ -158,6 +158,27 @@ public class DBQuery {
         return cuentas;
 }    
     
+    public String[] getCategoria(){
+        String [] tipos = new String[4];
+        int contador = 0;
+        String query = "SELECT * FROM categoria";
+        try{
+            Connection con = conexion.getConnection();
+            PreparedStatement ps = con.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                tipos[contador] = rs.getString("nombre");
+                contador++;
+            }
+            ps.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        
+        return tipos;
+    }
+    
     public String MD5(String md5){
         try{
             java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
@@ -200,16 +221,17 @@ public class DBQuery {
     public boolean añadirEgreso(int idUsuario, int idCuenta, int idCategoria, double monto , String fecha, String descripcion){
           Movimiento movimiento = new   Movimiento();
           Cuenta cuenta = new Cuenta();
-          String queryI = "INSERT INTO movimiento values (idMovimiento, id, idCuenta,idCategoria,,monto,fecha,descripcion)";
+          String queryI = "INSERT INTO movimiento (idUsuario, idCuenta, idCategoria, monto, fecha, descripcion) values (?,?,?,?,?,?,?)";
      
               try{
             Connection con = conexion.getConnection();
             PreparedStatement pstm = con.prepareStatement(queryI);
-            pstm.setInt(1,1);
-            pstm.setInt(2, idUsuario);
-            pstm.setDouble(5, monto);
-            pstm.setString(6, fecha);
-            pstm.setString(7, descripcion);
+            pstm.setInt(1,idUsuario);
+            pstm.setInt(2, idCuenta);
+            pstm.setDouble(3, idCategoria);
+            pstm.setDouble(4, monto);
+            pstm.setString(5, fecha);
+            pstm.setString(6, descripcion);
             
             if(pstm.executeUpdate() > 0){
                 return true;
@@ -226,16 +248,13 @@ public class DBQuery {
     public int buscarIdUsuario(String nombre) {
     int id = 0;
 
-   String query  =  "SELECT idUsuario FROM cuentas WHERE nombre = ?";
+   String query  =  "SELECT idUsuario FROM Usuario WHERE username = ?";
 
-    try (
+    try {
            Connection con = conexion.getConnection();
            PreparedStatement ps = con.prepareStatement(query);
            ps.setString(1,nombre);
             ResultSet rs = ps.executeQuery();
-        ) 
-    {
-
 
         while (rs.next()) { 
             id = rs.getInt("idUsuario");

@@ -376,6 +376,7 @@ public class MenuCuentas extends javax.swing.JFrame {
 
     private void jLabelCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCerrarSesionMouseClicked
         // TODO add your handling code here:
+        user = null;
         new Login().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabelCerrarSesionMouseClicked
