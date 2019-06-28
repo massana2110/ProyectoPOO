@@ -5,6 +5,7 @@
  */
 package Interfaz;
 
+import entidades.Usuario;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -15,29 +16,22 @@ import java.awt.Toolkit;
  */
 public class MenuMovimientos extends javax.swing.JFrame {
     
+    private Usuario user;
     /**
      * Creates new form MenuCuentas
+     * @param user
      */
-    public MenuMovimientos() {
+    public MenuMovimientos(Usuario user) {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.user = user;
     }
 
      public Image getIconImage(){
        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/Logo2.png"));
        return retValue;
    } 
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
+
      
     /**
      * This method is called from within the constructor to initialize the form.
@@ -418,13 +412,13 @@ public class MenuMovimientos extends javax.swing.JFrame {
 
     private void jLabelInformacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelInformacionMouseClicked
         // TODO add your handling code here:
-        new Tutorial1().setVisible(true);
+        new Tutorial1(user).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabelInformacionMouseClicked
 
     private void jLabelInformacionTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelInformacionTextMouseClicked
         // TODO add your handling code here:
-        new Tutorial1().setVisible(true);
+        new Tutorial1(user).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabelInformacionTextMouseClicked
 
@@ -475,13 +469,13 @@ public class MenuMovimientos extends javax.swing.JFrame {
 
     private void jLabelCuentasTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCuentasTextMouseClicked
         // TODO add your handling code here:
-         new MenuCuentas().setVisible(true);
+         new MenuCuentas(user).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabelCuentasTextMouseClicked
 
     private void jLabelCuentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCuentasMouseClicked
         // TODO add your handling code here:
-         new MenuCuentas().setVisible(true);
+         new MenuCuentas(user).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabelCuentasMouseClicked
 
@@ -495,41 +489,6 @@ public class MenuMovimientos extends javax.swing.JFrame {
          jLabelEgresosText.setForeground(Color.WHITE);
     }//GEN-LAST:event_jLabelEgresosMouseExited
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuMovimientos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuMovimientos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuMovimientos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuMovimientos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuMovimientos().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabelCerrarSesion;

@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * 
@@ -67,6 +68,47 @@ public class DBQuery {
             e.printStackTrace();
         }
         return usuario;
+    }
+    
+    public String findUser(String username){
+        String user = null;
+        String query = "SELECT * FROM usuario WHERE username = ?";
+        try{
+            Connection con = conexion.getConnection();
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, username);
+               ResultSet rs = ps.executeQuery();
+
+               while (rs.next()){
+                   user = rs.getString("username");
+               }
+            ps.close();
+        }
+        catch(SQLException error){
+            System.out.println("ERROR: "+error.getMessage());
+        }
+        finally{
+            return user;
+        }
+    }
+    
+    public boolean updatePass(String id, String pass) throws SQLException{
+        String query = "UPDATE usuario SET contraseña = ? WHERE username = ?";
+        String hashPass = MD5(pass);
+        try{
+            Connection con = conexion.getConnection();
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, hashPass);
+            ps.setString(2, id);
+            
+            if (ps.executeUpdate() != 0) {
+                return true;
+            }
+        } catch (SQLException se) {
+            se.printStackTrace();
+            return false;
+        }
+        return false;
     }
     
     public String MD5(String md5){

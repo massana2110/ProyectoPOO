@@ -5,7 +5,7 @@
  */
 package proyectopoo;
 
-import Vistas.Login;
+import Interfaz.Login;
 /**
  *
  * @author Frognas

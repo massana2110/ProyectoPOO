@@ -7,6 +7,9 @@ package Interfaz;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import sql.DBQuery;
 
 /**
  *
@@ -14,6 +17,7 @@ import java.awt.Toolkit;
  */
 public class RestablecerContraseña extends javax.swing.JFrame {
 
+    private DBQuery query;
     /**
      * Creates new form SignIn
      */
@@ -21,7 +25,7 @@ public class RestablecerContraseña extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         jLabelIncorrecto.setVisible(false);
-        
+        query = new DBQuery();
     }
 
     
@@ -30,10 +34,7 @@ public class RestablecerContraseña extends javax.swing.JFrame {
         jTextContraseña.setText("");
         jTextContraseña2.setText("");
     }
-    
-    
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -65,6 +66,11 @@ public class RestablecerContraseña extends javax.swing.JFrame {
         getContentPane().add(jLabelRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 470, 200, 80));
 
         jLabelRestablecer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Restablecer.png"))); // NOI18N
+        jLabelRestablecer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelRestablecerMouseClicked(evt);
+            }
+        });
         getContentPane().add(jLabelRestablecer, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 470, 200, 80));
 
         jTextUsuario.setBackground(new java.awt.Color(0, 28, 75));
@@ -86,6 +92,11 @@ public class RestablecerContraseña extends javax.swing.JFrame {
         getContentPane().add(jTextContraseña2, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 370, 340, 30));
 
         jLabelBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscar.png"))); // NOI18N
+        jLabelBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelBuscarMouseClicked(evt);
+            }
+        });
         getContentPane().add(jLabelBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 140, 100, 50));
 
         jLabelIncorrecto.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
@@ -104,6 +115,39 @@ public class RestablecerContraseña extends javax.swing.JFrame {
         new Login().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabelRegresarMouseClicked
+
+    private void jLabelBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelBuscarMouseClicked
+        // TODO add your handling code here:
+        String user = jTextUsuario.getText();
+        String usuario = query.findUser(user);
+        if (usuario != null) {
+            jTextUsuario.setEnabled(false);
+            jLabelBuscar.setEnabled(false);
+            jLabelIncorrecto.setVisible(false);
+            JOptionPane.showMessageDialog(this, "Usuario encontrado", "Succes", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            jLabelIncorrecto.setVisible(true);
+        }
+    }//GEN-LAST:event_jLabelBuscarMouseClicked
+
+    private void jLabelRestablecerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelRestablecerMouseClicked
+        // TODO add your handling code here:
+        if (jTextContraseña.getPassword().equals("") || jTextContraseña2.getPassword().equals("")) {
+            JOptionPane.showMessageDialog(this, "Campos no pueden estar vacios.", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try{
+
+                if (query.updatePass(jTextUsuario.getText(), new String(jTextContraseña.getPassword())) 
+                        && new String(jTextContraseña.getPassword()).equals(new String(jTextContraseña2.getPassword()))) {
+                    JOptionPane.showMessageDialog(this,"User edited successfully","Success",JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    jLabelIncorrecto.setVisible(true);
+                }
+            } catch (SQLException se){
+                se.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_jLabelRestablecerMouseClicked
 
     public Image getIconImage(){
        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/Logo2.png"));

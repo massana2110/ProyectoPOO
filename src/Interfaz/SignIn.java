@@ -7,6 +7,9 @@ package Interfaz;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import sql.DBQuery;
 
 /**
  *
@@ -14,13 +17,14 @@ import java.awt.Toolkit;
  */
 public class SignIn extends javax.swing.JFrame {
 
+    DBQuery query;
     /**
      * Creates new form SignIn
      */
     public SignIn() {
         initComponents();
         this.setLocationRelativeTo(null);
-        
+        query = new DBQuery();
     }
 
     
@@ -62,6 +66,11 @@ public class SignIn extends javax.swing.JFrame {
         getContentPane().add(jLabelRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 470, 200, 80));
 
         jLabelCrearCuenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CrearCuenta2.png"))); // NOI18N
+        jLabelCrearCuenta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelCrearCuentaMouseClicked(evt);
+            }
+        });
         getContentPane().add(jLabelCrearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 470, 200, 80));
 
         jTextUsuario.setBackground(new java.awt.Color(0, 28, 75));
@@ -93,6 +102,24 @@ public class SignIn extends javax.swing.JFrame {
         new Login().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabelRegresarMouseClicked
+
+    private void jLabelCrearCuentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCrearCuentaMouseClicked
+        // TODO add your handling code here:
+        if (jTextUsuario.getText().isEmpty() || jTextContraseña.getPassword().equals("") || jTextContraseña2.getPassword().equals("")) {
+            JOptionPane.showMessageDialog(this, "Error: Campos no pueden estar vacios.", "Alert", JOptionPane.WARNING_MESSAGE);
+        }else{
+            try{
+                if (new String(jTextContraseña.getPassword()).equals(new String(jTextContraseña2.getPassword())) &&
+                        query.registrarUsuario(jTextUsuario.getText(), new String(jTextContraseña.getPassword()))) {
+                    JOptionPane.showMessageDialog(this, "Usuario creado con exito.", "Succes", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Error al consultar la base de datos.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch(SQLException e){
+                e.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_jLabelCrearCuentaMouseClicked
 
     public Image getIconImage(){
        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/Logo2.png"));

@@ -5,6 +5,7 @@
  */
 package Interfaz;
 
+import entidades.Usuario;
 import java.awt.Image;
 import java.awt.Toolkit;
 
@@ -14,12 +15,15 @@ import java.awt.Toolkit;
  */
 public class Tutorial4 extends javax.swing.JFrame {
 
+    private Usuario user;
     /**
      * Creates new form Tutorial1
+     * @param user
      */
-    public Tutorial4() {
+    public Tutorial4(Usuario user) {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.user = user;
     }
     public Image getIconImage(){
        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/Logo2.png"));
@@ -67,51 +71,16 @@ public class Tutorial4 extends javax.swing.JFrame {
 
     private void jLabelRegresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelRegresarMouseClicked
         // TODO add your handling code here:
-        new Tutorial3().setVisible(true);
+        new Tutorial3(user).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabelRegresarMouseClicked
 
     private void jLabelSiguienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelSiguienteMouseClicked
         // TODO add your handling code here:
-        new MenuCuentas().setVisible(true);
+        new MenuCuentas(user).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabelSiguienteMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Tutorial4.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Tutorial4.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Tutorial4.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Tutorial4.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Tutorial4().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabelFondo;
